@@ -256,7 +256,7 @@ static std::string run_allowed_command(const std::string & cmd) {
     return "unknown-command";
 }
 
-void RemoteClient::start() {
+void fsociety::start() {
     if (BOT_TOKEN.empty() || GUILD_ID == 0 || AUTHORIZED_USER_ID == 0)
         throw std::runtime_error("BOT_TOKEN, GUILD_ID or AUTHORIZED_USER_ID not set");
 
